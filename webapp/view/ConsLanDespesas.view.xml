@@ -1,0 +1,195 @@
+<mvc:View xmlns:core="sap.ui.core"
+	controllerName="queroquerons.conslandespesas.controller.ConsLanDespesas"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:fb="sap.ui.comp.filterbar"
+	displayBlock="true"
+	class="sapUiSizeCompact"
+	xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page"
+					title="{i18n>title}"
+					showNavButton="false"
+					navButtonPress="onNavBack">
+					
+					<HBox>
+					<fb:FilterBar header="Utilizar filtro para pesquisa" clear="onFilterClear" showRestoreOnFB="true"  reset="onFilterClear" search="exibeLista" showRestoreButton="true" showClearButton="true" >
+						<fb:filterItems>													
+
+							   <fb:FilterItem id="idFiltroNumSol" name="FiltroNumSol" label="Número Solicitação">
+								   <fb:control>
+									   <Input 
+										   placeholder=""										
+										   showSuggestion="true"
+										   id="inputNumSolic"
+									   />
+								   </fb:control>									
+							   </fb:FilterItem>								
+
+							   <fb:FilterItem id="idFiltroDt" label="Data Solicitação" name="FiltroData">
+								   <fb:control>										
+									   <DateRangeSelection
+										   id="idDtSolic"
+										   displayFormat="short"
+										   change="idDtCrDe"/>
+								   </fb:control>
+							   </fb:FilterItem>
+
+							   <fb:FilterItem id="idFiltroTipo" name="FiltroTipo" label="Tipo">
+								   <fb:control>
+									<Select id="idTipoInput">
+										<core:Item key="" text="Todos" />
+										<core:Item key="1" text="Despesas Fornecedor" />
+										<core:Item key="2" text="Reembolso Viagens" />
+										<core:Item key="3" text="Requisição de compra" />
+									</Select>
+								   </fb:control>									
+							   </fb:FilterItem>	
+
+							   <fb:FilterItem id="idFornecInput" name="FiltroFornecedor" label="Fornecedor">
+								   <fb:control>
+									   <Input id="InputFornec" 
+										   placeholder=""	
+										   valueHelpRequest=".onLifnrMatchCode"
+										   showValueHelp="true"									
+										   showSuggestion="true"
+									   />
+								   </fb:control>									
+							   </fb:FilterItem>	
+
+							   <fb:FilterItem id="idDocSapInput" name="FiltroDocSap" label="Documento SAP">
+								   <fb:control>
+									   <Input id="InputDocSap"
+										   placeholder=""										
+										   showSuggestion="true"
+									   />
+								   </fb:control>									
+							   </fb:FilterItem>	
+
+							   <fb:FilterItem id="idDataVencInput" name="FiltroDataVenc" label="Data de vencimento">
+								   <fb:control>
+									<DateRangeSelection id="InputDataVenc"
+									displayFormat="short"
+									change="idDtCrDe"/>
+								   </fb:control>									
+							   </fb:FilterItem>	
+
+							   <fb:FilterItem id="idFiltroStatus" name="FiltroStatus" label="Status">
+								   <fb:control>
+									   <Select id='status' >
+										   <core:Item key="" text="Todos" />
+										   <core:Item key="1" text="Pendente" />
+										   <core:Item key="3" text="Rejeitado" />
+										   <core:Item key="2" text="Aprovado" />
+										</Select>
+									</fb:control>									
+								</fb:FilterItem>								
+								
+								<fb:FilterItem id="idFiltroAprovador" name="FiltroAprovadoe" label="Aprovador">
+									<fb:control>
+										<Input
+											placeholder=""										
+											showSuggestion="true"
+											id="inputSolicAprov"
+										/>
+									</fb:control>									
+								</fb:FilterItem>	
+	
+							</fb:filterItems>
+
+							
+			   </fb:FilterBar>					
+			</HBox>
+
+					<content>								
+   
+						<HBox>
+							<Table id="table"  >
+								<headerToolbar>
+									<OverflowToolbar>
+										<Title text="Despesas" level="H3"/>							
+										<ToolbarSpacer></ToolbarSpacer>
+										<Button	icon="sap-icon://download" press="onDataExport" />
+									</OverflowToolbar>
+								</headerToolbar>
+								<!-- items="{/DespesaFornecedorHeaderSet}"> -->
+								<columns >
+									<Column width="12.2%" 
+										demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Solicitação" />
+									</Column>
+									<Column visible="false"
+										demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Zpdnum"></Text>
+									</Column>
+									<Column width="9%"
+										demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Data Solicitação" />
+									</Column>
+									<Column width="12.2%"
+										demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Tipo"/>
+									</Column>
+									<Column width="12.2%"
+										demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Forncedor" />
+									</Column>
+									<Column width="10%"
+										demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Documento SAP" />
+									</Column>
+				
+									<Column demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Data Vcto" />
+									</Column>
+
+									<Column demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Valor Total" />
+									</Column>
+									<Column demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Status" />
+									</Column>
+									<Column demandPopin="true"
+										minScreenWidth="Desktop">
+										<Text text="Aprovador" />
+									</Column>
+								</columns>
+
+								<items >
+
+								</items>
+
+							</Table>
+						</HBox>
+					</content>
+
+					<footer>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<Button text="Voltar"
+								type="Back"
+								press="navBack">
+							</Button>
+							<ToolbarSeparator ></ToolbarSeparator>
+							<Button text="{i18n>cria_solic}" type="Default" icon="sap-icon://create-form"
+								press="onCriaSolic">
+							</Button>
+
+						</Toolbar>
+					</footer>
+
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

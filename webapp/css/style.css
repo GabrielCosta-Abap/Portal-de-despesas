@@ -1,0 +1,75 @@
+/* Enter your custom styles here */
+
+.txtLine{
+        /* font-size: 11px !important; */
+        white-space: nowrap;
+        display: inline-block;
+        text-align: start;
+}
+
+.centralizeInput{
+    align-content: center;
+    text-align: center;
+}
+
+.mais{
+    margin-right: 47px;
+}
+
+/* .greyColTxt{
+    color: #333
+} */
+
+.textSize{
+    font-size: 10.5px !important;
+    white-space: nowrap;
+}
+
+div[id*='header'] div h5 {   
+    display: none !important;
+}
+
+/* div[id*='dadosViagem'] div h5 {   
+    margin-left: 30px !important;
+} */
+
+/* div[class*="sapUiRespGrid"]:after {
+
+    display: none;
+
+} */
+
+/* div[id*='kmTotal'] {   
+    margin-left: 0px !important;
+} */
+
+.shell{
+    background-color: green !important
+}
+
+:focus>[class*='sapM'] {
+    outline-style: none !important ;
+  }
+
+sapThemeBarHeading{
+    color: green;
+}
+
+.headerTabBar{
+    text-align:center !important ;
+}
+
+.headerText_sol{
+order: 0 !important;
+flex-grow: 0 !important;
+flex-shrink: 1 !important;
+flex-basis: auto !important;
+min-height: auto !important;
+min-width: auto !important;
+width: 49% !important;
+margin-left: 75% !important;
+margin-top: -6.5% !important;
+position: relative !important;
+}
+
+;

@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns:commons="sap.ui.commons"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:comp="sap.ui.comp"
+    xmlns:u="sap.ui.unified">
+
+    <TableSelectDialog items="{/sh_lifnrSet}"
+                       liveChange="onLiveChangeLifnr"
+                       confirm="onConfirm" >
+
+        <columns>
+            <Column >
+                <Text text="Cód. Fornecedor"></Text>
+            </Column>
+            <Column >
+                <Text text="Nome"></Text>
+            </Column>
+            <!-- <Column >
+                <Text text="CNPJ"></Text>
+            </Column>
+            <Column >
+                <Text text="CPF"></Text>
+            </Column>             -->
+        </columns>
+
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{Lifnr}"></Text>
+                </cells>
+                <cells>
+                    <Text text="{Name1}"></Text>
+                </cells>
+                <!-- <cells>
+                    <Text text="{Txt50}"></Text>
+                </cells>        
+                <cells>
+                    <Text text="{Txt50}"></Text>
+                </cells>                         -->
+            </ColumnListItem>
+        </items>
+
+    </TableSelectDialog>
+
+
+</core:FragmentDefinition>

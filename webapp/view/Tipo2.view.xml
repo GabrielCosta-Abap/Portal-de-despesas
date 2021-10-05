@@ -1,0 +1,605 @@
+<mvc:View controllerName="queroquerons.conslandespesas.controller.Tipo2"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    class="sapUiSizeCompact"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns:s="sap.ui.comp.smartfield"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:sf="sap.ui.comp.smartform"
+    xmlns:u="sap.m.upload"
+    xmlns:commons="sap.ui.commons">
+
+    <Shell id="shell"
+        appWidthLimited="false">
+        <App id="app">
+            <pages>
+                <Page id="page"
+                    title="Portal Despesas Lojas Quero-Quero"
+                    showHeader="true">
+                    <!-- <HBox justifyContent="End">
+                        <SearchField id="search"
+                            width="90%"
+                            value="{/term}"
+                            liveChange="onLiveChange">
+                        </SearchField>
+                    </HBox> -->
+
+                    <HBox backgroundDesign="Solid"
+                        alignContent="SpaceAround">
+                        <VBox></VBox>
+                        <!-- <Title text=" Nova solicitação - Lançamento despesas fornecedor" level="H1" titleStyle="H4"></Title> -->
+                    </HBox>
+
+                    <f:SimpleForm title="Nova {i18n>solicitacao} - {i18n>prestacao} de contas reembolso de viagem"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="5"
+                        labelSpanL="5"
+                        labelSpanM="5"
+                        labelSpanS="12"
+                        adjustLabelSpan="true"
+                        emptySpanXL="0"
+                        emptySpanL="0"
+                        emptySpanM="0"
+                        id="header"
+                        emptySpanS="0"
+                        columnsXL="4"
+                        columnsL="4"
+                        columnsM="2"
+                        singleContainerFullSize="true">
+                        <f:content>
+                            <core:Title />
+                            <Label text="Tipo lançamento"></Label>
+
+                            <Input id="tipoLanc"
+                                value="2"
+                                width="10%"
+                                editable="false">
+                                <layoutData>
+                                    <l:GridData span="XL1 L2 M2 S4" />
+                                </layoutData>
+                            </Input>
+
+                            <Text text="Reembolso de viagem"
+                                class="textSize">
+                                <layoutData>
+                                    <l:GridData span="XL1 L5 M2 S4" />
+                                </layoutData>
+                            </Text>
+
+                            <Label text="{i18n>matricula}" />
+                            <Input id="matricula"
+                                placeholder=""
+                                submit=".onSubmit"
+                                showSuggestion="true"
+                                showValueHelp="true"
+                                valueHelpRequest=".onMatriculaMatchCode">
+                                <suggestionItems>
+                                    <core:Item />
+                                </suggestionItems>
+                                <layoutData>
+                                    <l:GridData span="XL1 L6 M2 S4" />
+                                </layoutData>
+                            </Input>
+                            <Text id="txtMatricula"
+                                class="textSize">
+                                <layoutData>
+                                    <l:GridData span="XL1 L1 M2 S4" />
+                                </layoutData>
+                            </Text>
+                            <Label text="Empresa" />
+                            <Input id="empresa"
+                                placeholder=""
+                                submit=".onSubmit"
+                                showSuggestion="true"
+                                showValueHelp="true"
+                                valueHelpRequest=".onSearch">
+                                <suggestionItems>
+                                    <core:Item  />
+                                </suggestionItems>
+
+                                <layoutData>
+                                    <l:GridData span="XL1 L4 M2 S4" />
+                                </layoutData>
+                            </Input>
+                            <Text id="txtBukrs"
+                                class="textSize">
+                                <layoutData>
+                                    <l:GridData span="XL1 L3 M2 S4" />
+                                </layoutData>
+                            </Text>
+
+                            <Label text="Data Documento" />
+                            <DatePicker id="dtDoc"
+                                valueFormat="dd.MM.yyyy"
+                                width="70%"
+                                displayFormat="short"
+                                placeholder=" "
+                                change=".onSubmit" />
+
+                            <Label text="Data Lçto." />
+                            <DatePicker id="dtLanc"
+                                valueFormat="dd.MM.yyyy"
+                                width="70%"
+                                displayFormat="short"
+                                placeholder=" "
+                                change="onSubmit" />
+
+                            <Label text="Texto {i18n>cabecalho}" />
+                            <Input value=""
+                                id="txtCab"
+                                submit=".onSubmit"
+                                editable="true" />
+
+                            <core:Title />
+                            <Label text="{i18n>area}" />
+                            <Input value=""
+                                id="area"
+                                submit=".onSubmit"
+                                editable="false"/>
+
+                            <Label text="CPF">
+
+                            </Label>
+                            <Input value=""
+                                id="cpf"
+                                submit=".onSubmit"
+                                editable="false">
+                            </Input>
+
+                            <Label text="Banco" />
+                            <Input value=""
+                                submit=".onSubmit"
+                                width="50%"
+                                id="banco"
+                                editable="false" />
+
+                            <Label text="{i18n>agencia}" />
+                            <Input value=""
+                                id="agencia"
+                                submit=".onSubmit"
+                                width="50%"
+                                editable="false" />
+
+                            <Label text="Conta {i18n>bancaria}" />
+                            <Input value=""
+                                id="bkont"
+                                submit=".onSubmit"
+                                editable="false" />
+
+                            <Label text="{i18n>cartao} Alelo" />
+                            <Input value=""
+                                id="alelo"
+                                submit=".onSubmit"
+                                width="50%"
+                                editable="false" />
+
+                            <core:Title />
+                            <Label text="{i18n>celula}" />
+                            <Input value=""
+                                id="celula"
+                                submit=".onSubmit"
+                                editable="false"/>
+
+                            <Label text="Cód. Aprov" />
+                            <Input value=""
+                                id="codAprov"
+                                placeholder=""
+                                submit=".onSubmit"
+                                showSuggestion="true"
+                                showValueHelp="true"
+                                valueHelpRequest=".onSearch">
+                                <suggestionItems>
+                                    <core:Item />
+                                </suggestionItems>
+                                <layoutData>
+                                    <l:GridData span="XL1 L4 M2 S4" />
+                                </layoutData>
+                            </Input>
+
+                            <Text id="txtCodAprov"
+                                class="textSize">
+                                <layoutData>
+                                    <l:GridData span="XL1 L3 M2 S4" />
+                                </layoutData>
+                            </Text>
+
+                            <core:Title />
+                            <Label text="Adto. viagem recebido"
+                                id="labelAdtoV">
+                                <layoutData>
+                                    <l:GridData span="XL1 L8 M2 S4" />
+                                </layoutData>
+                            </Label>
+                            <Input value=""
+                                id="adtoViagem"
+                                submit=".onSubmit"
+                                editable="false">
+                            </Input>
+
+                            <Label text="Resumo das despesas">
+                                <layoutData>
+                                    <l:GridData span="XL1 L8 M2 S4" />
+                                </layoutData>
+                            </Label>
+                            <Input value=""
+                                submit=".onSubmit"
+                                id="resumoDesp"
+                                type="Text"
+                                editable="false">
+
+                            </Input>
+
+                            <Label text="Valor líquido a reembolsar">
+                                <layoutData>
+                                    <l:GridData span="XL1 L8 M2 S4" />
+                                </layoutData>
+                            </Label>
+                            <Input value=""
+                                submit=".onSubmit"
+                                id="valLiquido"
+                                editable="false">
+
+                            </Input>
+
+                            <Label text="Disponível">
+                                <layoutData>
+                                    <l:GridData span="XL1 L8 M2 S4" />
+                                </layoutData>
+                            </Label>
+                            <Input value="" id="disponivelHeader" editable="false">
+
+                            </Input>
+
+                            <Label text="Utilizado">
+                                <layoutData>
+                                    <l:GridData span="XL1 L8 M2 S4" />
+                                </layoutData>
+                            </Label>
+                            <Input value="" id="utilizadoHeader" editable="false">
+                            </Input>
+
+                        </f:content>
+
+                    </f:SimpleForm>
+
+                    <!-- table - início  -->
+                    <f:SimpleForm id="dadosViagem"
+                        title="Dados viagem"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="3"
+                        labelSpanL="9"
+                        labelSpanM="3"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="0"
+                        emptySpanL="0"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="5"
+                        columnsL="6"
+                        columnsM="5"
+                        singleContainerFullSize="true">
+
+                        <f:content >
+                            <core:Title text="Data início viagem" />
+                            <DatePicker id="dataInicio"
+                                valueFormat="dd.MM.yyyy"
+                                displayFormat="short"
+                                placeholder=" "
+                                change="onSubmit">
+                            </DatePicker>
+
+                            <core:Title text="Hora início viagem" />
+                            <TimePicker id="horaInicio"
+                                valueFormat="HH:mm"
+                                displayFormat="HH:mm"
+                                change="onSubmit" />
+
+                            <core:Title text="Data final viagem"/>
+                            <DatePicker id="dataFim"
+                                valueFormat="dd.MM.yyyy"
+                                displayFormat="short"
+                                placeholder=" "
+                                change="onSubmit" />
+
+                            <core:Title text="Hora final viagem"/>
+                            <TimePicker id="horaFim"
+                                valueFormat="HH:mm"
+                                displayFormat="HH:mm"
+                                change="onSubmit" />
+                            <core:Title text="KM Total" />
+                            <Input value=""
+                                id="kmTotal"
+                                type="Number"
+                                editable="false">
+                            </Input>
+                        </f:content>
+                    </f:SimpleForm>
+
+                    <!-- Table viagens - início -->
+                    <f:SimpleForm title="Itinerário">
+                    </f:SimpleForm>
+
+                    <Table id="tabViagem"
+                        mode="None">
+                        <columns>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Item"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Origem"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Destino"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Data"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="KM"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Mais"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Eliminar"/>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem  >
+                                <cells >
+                                    <Input value="1"
+                                        submit=".onSubmit"
+                                        editable="false"/>
+                                    <Input value=""
+                                        submit=".onSubmit"/>
+                                    <Input value=""
+                                        submit=".onSubmit"/>
+                                    <DatePicker valueFormat="dd.MM.yyyy"
+                                        displayFormat="short"
+                                        placeholder=" "
+                                        change="onSubmit" />
+                                    <Input value=""
+                                        type="Number"
+                                        submit=".onSubmit" />
+                                    <core:Icon src="sap-icon://add"
+                                        press="onAdd" />
+                                    <core:Icon src="sap-icon://delete"
+                                        press="removeLine" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                    <!--  table - fim -->
+
+                    <f:SimpleForm title="Detalhe despesas">
+                    </f:SimpleForm>
+
+                    <!-- <table:Table id="uiTable" rows="{/tabModel}">
+        <table:columns>
+            <table:Column  >
+                <Label text="Status" />
+                <table:template>
+                    <Input value="{campo1}" />
+                </table:template>
+            </table:Column>
+        </table:columns>
+</table:Table> -->
+
+
+                    <Table id="reqTable"
+                        popinLayout="GridSmall"
+                        sticky="InfoToolbar"
+                        autoPopinMode="true"
+                        contextualWidth="Large"
+                        swipe="BeginToEnd"
+                        mode="None">
+                        <columns>
+                            <Column hAlign="Center">
+                                <Text text="Data"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="Despesa"/>
+                            </Column>
+                            <Column hAlign="Center"
+                                visible="false">
+                                <Text text="Conta"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="Anexo"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="{i18n>observacao}/Texto Item"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="R$ Pago"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="R$ Reembolso"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="Documento"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="Centro custo"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="Ordem"/>
+                            </Column>
+                            <Column hAlign="Center" visible="false">
+                                <Text text="Disponível"/>
+                            </Column>
+                            <Column hAlign="Center" visible="false">
+                                <Text text="Utilizado"/>
+                            </Column>
+                            <Column hAlign="Center" visible="false">
+                                <Text text="Grupo"/>
+                            </Column>
+                            <Column hAlign="Center" visible="false" >
+                                <Text text="Limite"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="Mais"/>
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="Eliminar"/>
+                            </Column>
+
+                        <!-- FS - JHON - FIM -->                            
+							<Column hAlign="Center" visible="false">
+                                <Text text="tipo_zcalc"/>
+                            </Column>
+                            <Column hAlign="Center" visible="false">
+                                <Text text="valor_zcalc"/>
+                            </Column>
+                        <!-- FS - JHON - FIM -->
+
+                        </columns>
+                        <items>
+                            <ColumnListItem  >
+                                <cells >
+                                    <DatePicker valueFormat="dd.MM.yyyy"
+                                        displayFormat="short"
+                                        placeholder=" " 
+                                        change="onSubmit" />
+
+                                    <Input value=""
+                                        placeholder=""
+                                        submit=".onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchDespesa">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <Input/>
+                                    <Input value=""
+                                        submit=".onSubmit"/>
+                                    <Input value=""
+                                        submit=".onSubmit"/>
+                                    <Input value=""
+                                        submit=".onSubmit"/>
+                                    <Input value=""
+                                        submit=".onSubmit" />
+                                    <Input value=""
+                                        submit=".onSubmit"/>
+                                    <Input value=""
+                                        submit=".onSubmit"
+                                        placeholder=""
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchKostl">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+
+                                    <Input value=""
+                                        placeholder=""
+                                        submit=".onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchAufnr">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+
+                                    <Input value=""
+                                        submit=".onSubmit" visible="false"
+                                        editable="false"/>
+                                    <Input value=""
+                                        submit=".onSubmit" visible="false"
+                                        editable="false"/>
+
+                                    <Input value=""
+                                        submit=".onSubmit" visible="false"
+                                        editable="false"/>
+
+                                        <Input visible="false" editable="false"></Input>  
+
+                                        <core:Icon src="sap-icon://add"
+                                        press="onAdd" />
+                                    <core:Icon src="sap-icon://delete"
+                                        press="removeDetLine" />
+
+                                        <!-- FS - JHON - INÍCIO -->
+                                        <Input value=""
+                                            submit=".onSubmit" visible="false"
+                                            editable="false"/>
+                                        <Input value=""
+                                            submit=".onSubmit" visible="false"
+                                            editable="false"/>     
+                                        <!-- FS - JHON - FIM -->
+                                                                                                                       
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                    <!--  table - fim -->
+
+                    <f:SimpleForm id="anexos"
+                        labelSpanL="4"
+                        class="sapUiSmallMarginEnd"
+                        labelSpanM="4"
+                        labelSpanS="6"
+                        title="Anexos">
+                    </f:SimpleForm>
+
+                    <u:UploadSet id="UploadSet"
+                        noDataText="Insira arquivos aqui."
+                        instantUpload="true"
+                        noDataDescription="Para fazer upload, arraste e solte os arquivos ou utilize o botão '+'"
+                        showIcons="true"
+                        selectionChanged="onChange"
+                        uploadEnabled="true"
+                        terminationEnabled="true"
+                        maxFileNameLength="100"
+                        uploadCompleted="onUploadCompleted">
+                        <u:items>
+
+                        </u:items>
+                    </u:UploadSet>
+
+
+                    <footer>
+                        <Toolbar>
+                            <ToolbarSpacer/>
+                            <Button text="Voltar"
+                                type="Back"
+                                press="clearAll">
+                            </Button>
+                            <ToolbarSeparator />
+                            <Button text="Salvar" type="Accept"
+                                press="onSalvar">
+                            </Button>
+                        </Toolbar>
+                    </footer>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+
+</mvc:View>

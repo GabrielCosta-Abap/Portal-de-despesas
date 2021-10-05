@@ -1,0 +1,405 @@
+<mvc:View controllerName="queroquerons.conslandespesas.controller.Tipo3"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    class="sapUiSizeCompact"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns:u="sap.m.upload"
+    xmlns:commons="sap.ui.commons">
+
+    <Shell id="shell"
+        appWidthLimited="false">
+        <App id="app">
+            <pages>
+                <Page id="page"
+                    title="Portal Despesas Lojas Quero-Quero"
+                    showHeader="true">
+                    <!-- <HBox justifyContent="End">
+                        <SearchField id="search"
+                            width="90%"
+                            value="{/term}"
+                            liveChange="onLiveChange">
+                        </SearchField>
+                    </HBox> -->
+
+                    <HBox backgroundDesign="Solid"
+                        alignContent="SpaceAround">
+                        <VBox></VBox>
+                        <!-- <Title text=" Nova solicitação - Lançamento despesas fornecedor" level="H1" titleStyle="H4"></Title> -->
+                    </HBox>
+
+                    <f:SimpleForm title="Nova {i18n>solicitacao} - {i18n>requisicao} de compras"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanXL="6"
+                        labelSpanL="6"
+                        labelSpanM="6"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="1"
+                        emptySpanL="1"
+                        emptySpanM="1"
+                        emptySpanS="12"
+                        columnsXL="3"
+                        columnsL="3"
+                        columnsM="2"
+                        singleContainerFullSize="false">
+                        <f:content>
+                            <core:Title />
+                            <Label text="Tipo de {i18n>lancamento}" />
+                            <Input id="tipoLanc"
+                                value="3"
+                                editable="false">
+                                <layoutData>
+                                    <l:GridData span="XL1 L2 M2 S4" />
+                                </layoutData>
+                            </Input>
+
+                            <Text text="Requisição de compras"
+                                class="textSize">
+                                <layoutData>
+                                    <l:GridData span="XL1 L4 M2 S4" />
+                                </layoutData>
+                            </Text>
+
+                            <Label text="Tipo {i18n>requisicao}" />
+                            <Input id="tipoReq"
+                                placeholder=""
+                                showSuggestion="true"
+                                showValueHelp="true" submit="onSubmit"
+                                valueHelpRequest=".onSearch">
+                                <suggestionItems>
+                                    <core:Item  />
+                                </suggestionItems>
+                                <layoutData>
+                                    <l:GridData span="XL1 L3 M2 S4" />
+                                </layoutData>
+                            </Input>
+                            <Text id="txtTipoReq"
+                                class="textSize">
+                                <layoutData>
+                                    <l:GridData span="XL1 L3 M2 S4" />
+                                </layoutData>
+                            </Text>
+
+                            <core:Title />
+                            <Label text="Empresa" />
+                            <Input id="empresa"
+                                placeholder="" submit="onSubmit"
+                                showSuggestion="true"
+                                showValueHelp="true"
+                                valueHelpRequest=".onSearchBukrs">
+                                <suggestionItems>
+                                    <core:Item />
+                                </suggestionItems>
+                                <layoutData>
+                                    <l:GridData span="XL1 L3 M2 S4" />
+                                </layoutData>
+                            </Input>
+                            <Text id="txtBukrs"
+                                class="textSize">
+                                <layoutData>
+                                    <l:GridData span="XL1 L3 M2 S4" />
+                                </layoutData>
+                            </Text>
+
+                            <core:Title />
+                            <Label text="Valor total R$" />
+                            <Input value=""
+                                id="vTotal" 
+                                submit="onSubmit"
+                                editable="false"/>
+
+                            <!-- <Label text="{i18n>orcamento}" />
+                            <Input value="" id="orcamento" type="Number" editable="false"/>
+
+                            <Label text="Saldo {i18n>disponivel}" />
+                            <Input value="" id="saldoDisp" type="Number" editable="false"/> -->
+
+                        </f:content>
+
+                    </f:SimpleForm>
+
+                    <!-- Table viagens - início -->
+                    <f:SimpleForm title="Itens da {i18n>requisicao} Compras / Classificação Contábil">
+                    </f:SimpleForm>
+
+                    <Table id="reqTable"
+                        popinLayout="GridSmall"
+                        sticky="InfoToolbar"
+                        autoPopinMode="true"
+                        contextualWidth="Large"
+                        swipe="BeginToEnd"
+                        mode="None">
+
+                        <columns>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Item"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Material"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Descrição do Material"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Quantidade"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="UM"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Centro"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Montante"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Grupo Merc."/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="{i18n>deposito}"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Ordem"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Data Remessa"/>
+                            </Column>
+
+                            <!-- Classificação contábil -->
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Class."/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Conta {i18n>razao}"/>
+                            </Column>
+                            <!-- <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Ordem"/>
+                            </Column> -->
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Centro Custo"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Imobilizado"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Sub {i18n>num}"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Preço"/>
+                            </Column>
+                            <Column minScreenWidth="Tablet"
+                                demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Grupo de compradores"/>
+                            </Column>
+
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Mais"/>
+                            </Column>
+                            <Column demandPopin="true"
+                                hAlign="Center">
+                                <Text text="Eliminar"/>
+                            </Column>
+
+                        </columns>
+                        <items>
+                            <!-- <ColumnListItem  /> -->
+                            <ColumnListItem  >
+                                <cells >
+                                    <Input value="10"
+                                        textAlign="Center" submit="onSubmit"
+                                        editable="false"/>
+                                    <Input placeholder=""
+                                        showSuggestion="true"
+                                        showValueHelp="true" submit="onSubmit"
+                                        valueHelpRequest=".onSearchMaterial">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <Input value="" submit="onSubmit"/>
+                                    <Input value="" type="Number" submit="onSubmit"/>
+                                    <Input value="" submit="onSubmit"/>
+                                    <Input placeholder=""  submit="onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchWerks">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <Input value="" editable="false" submit="onSubmit"/>
+                                    <Input placeholder=""
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchGrpMerc">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <Input value="DP10"
+                                        submit="onSubmit"
+                                        type="Text"
+                                        editable='false'>
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <Input placeholder="" submit="onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchAufnr">
+                                        <suggestionItems>
+                                            <core:Item />
+                                        </suggestionItems>
+                                    </Input>
+
+                                    <!-- Classificação contábil -->
+
+                                    <DatePicker valueFormat="dd.MM.yyyy"
+                                        displayFormat="short"
+                                        placeholder=" "
+                                        change="onSubmit" />
+
+                                    <Input placeholder="" submit="onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchClasf">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <Input placeholder="" submit="onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest="onSearchSaknr">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <!-- <Input placeholder=""
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest="onSearchAufnr">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input> -->
+                                    <Input placeholder="" submit="onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest="onSearchKostl">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <Input placeholder="" submit="onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchImobilizado">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+                                    <Input placeholder="" submit="onSubmit"
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchSubN">
+                                        <suggestionItems>
+                                            <core:Item />
+                                        </suggestionItems>
+                                    </Input>
+
+                                    <Input value="" submit="onSubmit"
+                                        editable="false"/>
+
+                                        <Input placeholder=""
+                                        showSuggestion="true"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onSearchEkgrp">
+                                        <suggestionItems>
+                                            <core:Item  />
+                                        </suggestionItems>
+                                    </Input>
+
+                                    <core:Icon src="sap-icon://add" 
+                                        press="onAdd" />
+
+                                    <core:Icon src="sap-icon://delete" 
+                                        press="removeLine" />
+
+                                </cells>
+                            </ColumnListItem>
+
+                        </items>
+                    </Table>
+                    <!--  table - fim -->
+
+                    <f:SimpleForm id="anexos" visible="false"
+                        title="Anexos">
+                    </f:SimpleForm>
+
+                    <u:UploadSet id="UploadSet"
+                        instantUpload="true" visible="false"
+                        showIcons="true"
+                        selectionChanged="onChange"
+                        uploadEnabled="true"
+                        terminationEnabled="true"
+                        maxFileNameLength="100"
+                        uploadCompleted="onUploadCompleted">
+                        <u:items>
+
+                        </u:items>
+                    </u:UploadSet>
+
+                    <footer>
+                        <Toolbar>
+                            <ToolbarSpacer/>
+                            <Button text="Voltar"
+                                type="Back"
+                                press="clearAll">
+                            </Button>
+                            <ToolbarSeparator />
+                            <Button text="Salvar"
+                                type="Accept"
+                                press="onSalvar">
+                            </Button>
+                        </Toolbar>
+                    </footer>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+
+</mvc:View>

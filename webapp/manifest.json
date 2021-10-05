@@ -1,0 +1,155 @@
+{
+  "_version": "1.31.0",
+  "sap.app": {
+    "id": "queroquerons.conslandespesas",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "ach": "ach"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://task",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "queroquerons.conslandespesas.view.ConsLanDespesas",
+      "type": "XML",
+      "async": true,
+      "id": "ConsLanDespesas"
+    },
+    "dependencies": {
+      "minUI5Version": "1.66.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+
+		"config": {
+			"sample": {
+				"stretch": true,
+				"files": [
+					"Detail.view.xml",
+					"Detail.controller.js",
+					"Solicitacao.fragment.xml",
+					"manifest.json"
+				]
+			}
+		},
+
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "queroquerons.conslandespesas.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "queroquerons.conslandespesas.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteConsLanDespesas",
+          "pattern": "",
+          "target": ["TargetConsLanDespesas"]
+        },
+        {
+          "name": "RouteDetail",
+          "pattern": "RouteDetail/{Zpdsol}/{Usnam}",
+          "target": ["TargetDetail"]
+        },
+        {
+          "name": "RouteTipo1",
+          "pattern": "RouteTipo1/{matricula}",
+          "target": "TargetTipo1"
+        },
+        {
+          "name": "RouteTipo2",
+          "pattern": "RouteTipo2/{matricula}",
+          "target": "TargetTipo2"
+        },
+        {
+          "name": "RouteTipo3",
+          "pattern": "RouteTipo3/{matricula}",
+          "target": "TargetTipo3"
+        }                                     
+      ],
+      "targets": {
+        "TargetConsLanDespesas": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewName": "ConsLanDespesas"
+        },
+        "TargetDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Detail",
+          "viewName": "Detail"
+        },
+        "TargetTipo1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Tipo1",
+          "viewName": "Tipo1"
+        },
+        "TargetTipo2": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Tipo2",
+          "viewName": "Tipo2"
+        },
+        "TargetTipo3": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Tipo3",
+          "viewName": "Tipo3"
+        }                            
+      }
+    }
+  }
+}
